@@ -1,16 +1,21 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const billSchema = new mongoose.Schema({
+interface IBill {
+  billingDate: Date;
+  billingAmount: number;
+}
+
+const billSchema: Schema = new Schema({
   billingDate: {
     type: Date,
     required: true,
   },
-  currentBill: {
+  billingAmount: {
     type: Number,
     required: true,
   },
 });
 
-const Bill = mongoose.model("Bill", billSchema);
+const Bill = mongoose.model<IBill>("Bill", billSchema);
 
 export default Bill;
