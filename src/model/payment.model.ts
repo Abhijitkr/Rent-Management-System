@@ -1,14 +1,18 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 enum PaymentMethod {
   Cash = "Cash",
   Bank = "Bank",
 }
 
-interface IPayment {
+interface IPaymentEntry {
   paymentDate: Date;
   paymentAmount: number;
   paymentMethod: PaymentMethod;
+}
+
+export interface IPayment {
+  payments: IPaymentEntry[];
 }
 
 const paymentSchema: Schema = new Schema({
@@ -27,6 +31,6 @@ const paymentSchema: Schema = new Schema({
   },
 });
 
-const Payment = mongoose.model<IPayment>("Payment", paymentSchema);
+const Payment = model<IPayment>("Payment", paymentSchema);
 
 export default Payment;

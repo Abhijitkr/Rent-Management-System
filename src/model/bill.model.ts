@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
-interface IBill {
+export interface IBill {
   billingDate: Date;
   billingAmount: number;
 }
@@ -16,6 +16,6 @@ const billSchema: Schema = new Schema({
   },
 });
 
-const Bill = mongoose.model<IBill>("Bill", billSchema);
+const Bill = model<IBill>("Bill", billSchema);
 
 export default Bill;
